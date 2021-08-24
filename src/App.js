@@ -19,7 +19,7 @@ function App() {
 	}
 
 	useEffect(() => {
-		axios.get(`http://api.weatherapi.com/v1/current.json?key=6062122ffa814927ac9105055212308&q=${searchValue}&lang=tr`).then((res) => {
+		axios.get(`https://api.weatherapi.com/v1/current.json?key=6062122ffa814927ac9105055212308&q=${searchValue}&lang=tr`).then((res) => {
 			setCity(res.data.location.name)
 			setCountry(res.data.location.country)
 			setLocaltime(res.data.location.localtime)
