@@ -6,7 +6,7 @@
 - *Developments continue.*
 
 ### Live Preview
-- Soon.
+- https://gndgdykc-react-weather-app.herokuapp.com/
 
 ### Screenshots
-- Soon.
+![](https://i.ibb.co/XtN77Jx/screenshot-fw.png)
