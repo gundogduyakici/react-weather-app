@@ -1,0 +1,9 @@
+@media only screen and (max-width: 900px) {
+    .app .weather-infos .bottom .weather-status {
+        flex-direction: column;        
+    }
+
+    .app .weather-infos .bottom .weather-status .today img {
+        width: 45%;
+    }
+}

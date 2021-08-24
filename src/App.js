@@ -3,6 +3,7 @@ import axios from 'axios';
 import Moment from 'react-moment';
 import { YMaps, Map } from 'react-yandex-maps';
 import './assets/css/App.css';
+import './assets/css/responsive.css';
 import logo from './assets/img/weather-default.png';
 
 function App() {
