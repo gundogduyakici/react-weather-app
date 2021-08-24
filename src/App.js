@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
+import { YMaps, Map } from 'react-yandex-maps';
 import './assets/css/App.css';
+import logo from './assets/img/weather-default.png';
 
 function App() {
 	const [searchValue, setSearchValue] = useState("");
@@ -9,25 +11,29 @@ function App() {
 	const [country, setCountry] = useState("Select Country");
 	const [localtime, setLocaltime] = useState(new Date());
 	const [feelslike, setFeelslike] = useState("0");
+	const [lat, setLat] = useState(52.52);
+	const [lon, setLon] = useState(13.4);
 	const [weatherStatus, setWeatherStatus] = useState("Select City");
-	const [weatherImg, setWeatherImg] = useState("");
+	const [weatherImg, setWeatherImg] = useState(logo);	
+
+	useEffect(() => {
+		axios.get(`https://api.weatherapi.com/v1/current.json?key=6062122ffa814927ac9105055212308&q=${searchValue}&lang=en`).then((res) => {
+			setCity(res.data.location.name)
+			setCountry(res.data.location.country)
+			setLocaltime(res.data.location.localtime)
+			setFeelslike(res.data.current.feelslike_c)
+			setLat(res.data.location.lat)
+			setLon(res.data.location.lon)
+			setWeatherStatus(res.data.current.condition.text)
+			setWeatherImg(res.data.current.condition.icon)
+		})
+	});
 
 	const getCity = (string) => {
 		if(string.length > 2) {
 			setSearchValue(string)
 		}
 	}
-
-	useEffect(() => {
-		axios.get(`https://api.weatherapi.com/v1/current.json?key=6062122ffa814927ac9105055212308&q=${searchValue}&lang=tr`).then((res) => {
-			setCity(res.data.location.name)
-			setCountry(res.data.location.country)
-			setLocaltime(res.data.location.localtime)
-			setFeelslike(res.data.current.feelslike_c)
-			setWeatherStatus(res.data.current.condition.text)
-			setWeatherImg(res.data.current.condition.icon)
-		})
-	})
 
 	return (
 		<div className="app">
@@ -45,8 +51,8 @@ function App() {
 					<div className="region">
 						<p className="city">{ city }</p>
 						<p className="country">{ country }</p>
-					</div>
-				</div>
+					</div>					
+				</div>				
 	
 				<div className="bottom">
 					<div className="weather-status">
@@ -76,6 +82,12 @@ function App() {
 							weather
 						</div>
 					</div>
+				</div>
+
+				<div className="map">
+					<YMaps query={{lang: 'en_US'}}>
+						<Map width="100%" state={{ center: [lat, lon], zoom: 11 }} />
+					</YMaps>
 				</div>
 			</div>      
 		</div>
