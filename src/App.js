@@ -9,7 +9,7 @@ import logo from './assets/img/weather-default.png';
 function App() {
 	const [searchValue, setSearchValue] = useState("");
 	const [city, setCity] = useState("Select City");
-	const [country, setCountry] = useState("Select Country");
+	const [country, setCountry] = useState("");
 	const [localtime, setLocaltime] = useState(new Date());
 	const [feelslike, setFeelslike] = useState("0");
 	const [lat, setLat] = useState(52.52);
